@@ -11,14 +11,33 @@ const movies = [
     { name: 'Frozen II', year: 2019, gross: 1450026933 }
 ]
 
-const movies2B = movies.filter(function(item) {
+// print list of movies grossing over 2B
+
+const ary2BMovies = movies.filter(function(item) {
     return item.gross >= 2000000000
 })
 
-console.log(movies2B)
+let movies2B = '<ol>';
+ary2BMovies.forEach(function(movie) {
+    movies2B += '<li>' + movie.name + ' ' + movie.year + ': ' + movie.gross.toLocaleString() + '</li>'
+});
+movies2B += '</ol>'
+document.querySelector('#movies2B').innerHTML = movies2B;
 
+// console.log(movies2B)
+
+// print list of top 10 movies
+let top10Movies = '<ol>'
+movies.forEach(function(movie) {
+    top10Movies += '<li>' + movie.name + ' ' + movie.year + ': ' + movie.gross.toLocaleString() + '</li>'
+});
+top10Movies += '</ol>'
+document.querySelector('#top10Movies').innerHTML = top10Movies
+
+
+/*
 const moviesDTL  = movies.forEach(function(movie) {
-    console.log(movie)
+  console.log(movie)
 })
 
 console.log(moviesDTL)
@@ -30,7 +49,7 @@ const movieNames = movies.map(function(item) {
 console.log(movieNames)
 
 const faveMovie = movies.find(function(item) {
-    return item.name === 'The Lion King'
+    return item.name === 'Endgame'
 })
 
 console.log(faveMovie)
@@ -53,3 +72,5 @@ const totalGross = movies.reduce(function(currentTotal, item) {
 0)
     
 console.log(totalGross / movies.length)
+
+*/
