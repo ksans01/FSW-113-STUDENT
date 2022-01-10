@@ -22,6 +22,18 @@ const parts = [
 
 ]
 
+var partsList = document.getElementById("detailsList");
+
+for (var i = 0; i < parts.length; i++){
+    var orderDetails = parts[i];
+
+    var list = document.createElement('li');
+    list.textContent = orderDetails;
+
+    partsList.appendChild(list);
+
+}
+
 // list of each part number and qty for check-off in the "detailsList" element
 
 // if parts requiring special handling exist (in aisle B3), list of items needing 
