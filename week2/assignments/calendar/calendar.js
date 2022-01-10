@@ -45,3 +45,22 @@ while ( y < remainder) {
     document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
     y++
 }
+
+var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+            "November", "December"];
+
+var monthSelect = document.getElementById("month");
+
+for (var i = 0; i < monthArray.length; i++){
+    var monthTitle = monthArray[i];
+
+    var monthOption = document.createElement("option");
+    monthOption.innerHTML = monthTitle;
+    monthOption.value = monthTitle;
+
+    monthSelect.appendChild(monthOption);
+} 
+
+var print = document.getElementById("btn");
+
+function printCalendar()

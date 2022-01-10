@@ -29,3 +29,8 @@
   padding: 3px;
   background-color: silver;
 }
+
+.monthTitle {
+  text-align: center;
+  padding: 5px;
+}
