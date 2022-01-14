@@ -27,12 +27,63 @@ var partsList = document.getElementById("detailsList");
 for (var i = 0; i < parts.length; i++){
     var orderDetails = parts[i];
 
+    console.log(parts[i].partNbr)
+
     var list = document.createElement('li');
-    list.textContent = orderDetails;
+    list.textContent = orderDetails.partNbr;
+
+    var qty = document.createElement('p');
+    qty.textContent = "Qty: " + orderDetails.qty;
 
     partsList.appendChild(list);
+    partsList.appendChild(qty);
 
+
+
+var packaging = document.getElementById("specialPackaging");
+
+
+    var specialPackaging = document.createElement("li");
+    var partAisle = parts[i].aisle;
+    var partDescription = parts[i].partDescr;
+
+    if (partAisle === 'B3'){
+        specialPackaging.textContent = partDescription;
+        packaging.appendChild(specialPackaging);
+    }
+    else {
+        partAisle.remove
+    }
+
+var hazardous = document.getElementById("hazardousMaterials");
+
+    var hazardousParts = document.createElement("li");
+    var getGloves = document.createElement("p");
+
+    if (partAisle === 'J4'){
+        hazardousParts.textContent = partDescription;
+        hazardous.appendChild(hazardousParts);
+        }
+
+
+var small = document.getElementById("smallItemsOnly");
+
+    var smallParts = document.createElement("li")
+    var basket = document.createElement("p");
+
+    if (partAisle === "H1"){
+        smallParts.textContent = partDescription;
+        small.appendChild(smallParts);
+    }
 }
+
+    getGloves.textContent = "Reminder: Use Gloves"
+    hazardous.appendChild(getGloves);
+
+
+    basket.textContent = "Grab a basket and go directly to aisle H1 for parts";
+    small.appendChild(basket);
+
 
 // list of each part number and qty for check-off in the "detailsList" element
 
