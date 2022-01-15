@@ -75,7 +75,22 @@ var small = document.getElementById("smallItemsOnly");
         smallParts.textContent = partDescription;
         small.appendChild(smallParts);
     }
+var forkLift = document.getElementById('forkiftNeeded');
+
+    var largePart = document.createElement("li");
+    var forkLiftNeeded = document.createElement("p");
+
+    if (partAisle === "S" || partAisle === "T" || partAisle === "U"){
+        largePart.textContent = partDescription;
+        forkLift.appendChild(largePart);
+    }
 }
+
+    const totalParts = parts.reduce(function(currentTotal, part) {
+        return part.qty + currentTotal
+    }, 0)
+
+    document.querySelector("#totalItems").textContent = "Total Items: " + totalParts;
 
     getGloves.textContent = "Reminder: Use Gloves"
     hazardous.appendChild(getGloves);
@@ -84,6 +99,9 @@ var small = document.getElementById("smallItemsOnly");
     basket.textContent = "Grab a basket and go directly to aisle H1 for parts";
     small.appendChild(basket);
 
+    forkLiftNeeded.textContent = "Reserve a forklift to grab parts";
+    forkLift.appendChild(forkLiftNeeded);
+    
 
 // list of each part number and qty for check-off in the "detailsList" element
 
