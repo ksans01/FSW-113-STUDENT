@@ -27,10 +27,9 @@ var partsList = document.getElementById("detailsList");
 for (var i = 0; i < parts.length; i++){
     var orderDetails = parts[i];
 
-    console.log(parts[i].partNbr)
 
     var list = document.createElement('li');
-    list.textContent = orderDetails.partNbr;
+    list.textContent = `${orderDetails.partDescr}, PN: ${orderDetails.partNbr}`;
 
     var qty = document.createElement('p');
     qty.textContent = "Qty: " + orderDetails.qty;
@@ -40,7 +39,7 @@ for (var i = 0; i < parts.length; i++){
 
 
 
-var packaging = document.getElementById("specialPackaging");
+    var packaging = document.getElementById("specialPackaging");
 
 
     var specialPackaging = document.createElement("li");
@@ -51,11 +50,8 @@ var packaging = document.getElementById("specialPackaging");
         specialPackaging.textContent = partDescription;
         packaging.appendChild(specialPackaging);
     }
-    else {
-        partAisle.remove
-    }
 
-var hazardous = document.getElementById("hazardousMaterials");
+    var hazardous = document.getElementById("hazardousMaterials");
 
     var hazardousParts = document.createElement("li");
     var getGloves = document.createElement("p");
@@ -66,7 +62,7 @@ var hazardous = document.getElementById("hazardousMaterials");
         }
 
 
-var small = document.getElementById("smallItemsOnly");
+    var small = document.getElementById("smallItemsOnly");
 
     var smallParts = document.createElement("li")
     var basket = document.createElement("p");
@@ -75,7 +71,7 @@ var small = document.getElementById("smallItemsOnly");
         smallParts.textContent = partDescription;
         small.appendChild(smallParts);
     }
-var forkLift = document.getElementById('forkiftNeeded');
+    var forkLift = document.getElementById('forkiftNeeded');
 
     var largePart = document.createElement("li");
     var forkLiftNeeded = document.createElement("p");

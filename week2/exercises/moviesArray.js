@@ -29,7 +29,7 @@ document.querySelector('#movies2B').innerHTML = movies2B;
 // print list of top 10 movies
 let top10Movies = '<ol>'
 movies.forEach(function(movie) {
-    top10Movies += '<li>' + movie.name + ' ' + movie.year + ': ' + movie.gross.toLocaleString() + '</li>'
+    top10Movies += `<li>${movie.name} (${movie.year}): $${movie.gross.toLocaleString()}</li>`
 });
 top10Movies += '</ol>'
 document.querySelector('#top10Movies').innerHTML = top10Movies

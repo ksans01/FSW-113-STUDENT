@@ -5,62 +5,70 @@
 // modify this script to run a function called printCalendar() when the user clicks the "Go" button
 
 // modify this script to use the first day of the month the user selects in place of the const today 
+printCalendar();
+function printCalendar() {
+    let monthSelect = document.getElementById("monthDrop");
+    var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                "November", "December"];
+    let monthIndex = monthArray.indexOf(monthSelect);
+            
+    for (var i = 0; i < monthArray.length; i++){
+        var monthTitle = monthArray[i];
 
-const today = new Date('5/1/2021')
-const month = today.getMonth()
-let days
-switch (month) {
-    case 1:
-        days = 28
-        break
-    case 3:
-    case 5:
-    case 8: 
-    case 10:
-        days = 30
-        break
-    default:
-        days = 31
-}
+        var monthOption = document.createElement("option");
+        monthOption.setAttribute("id", "optionId");
+        monthOption.innerHTML = monthTitle;
+        monthOption.value = monthTitle;
+
+        monthSelect.appendChild(monthOption);
+    } 
+
+
+
+
+    const today = new Date(monthIndex + '/1/2021')
+    const month = today.getMonth()
+    let days
+    switch (month) {
+        case 1:
+            days = 28
+            break
+        case 3:
+        case 5:
+        case 8: 
+        case 10:
+            days = 30
+            break
+        default:
+            days = 31
+    }
+        
+    let x
+    const weekday = today.getDay()
+    for (x = 0; x < weekday; x++){
+        document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
+    }
+
+    let dt = 0
+    do {
+        dt++
+        document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div`
+    } while ( dt < days)
+
+    const monthName = today.toLocaleDateString('default', {month:'long'})
+    const year = today.getFullYear()
+    document.querySelector('.calendarTitle').innerText = `${monthName} ${year}`
+
+    const remainder = (7 - ((x + dt) % 7))
+    let y = 0
+    while ( y < remainder) {
+        document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
+        y++
+    }
+
+
+
+
     
-let x
-const weekday = today.getDay()
-for (x = 0; x < weekday; x++){
-    document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
+
 }
-
-let dt = 0
-do {
-    dt++
-    document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div`
-} while ( dt < days)
-
-const monthName = today.toLocaleDateString('default', {month:'long'})
-const year = today.getFullYear()
-document.querySelector('.calendarTitle').innerText = `${monthName} ${year}`
-
-const remainder = (7 - ((x + dt) % 7))
-let y = 0
-while ( y < remainder) {
-    document.getElementById('calendarDays').innerHTML += "<div class='blankDay'>&nbsp;</div>"
-    y++
-}
-
-var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-            "November", "December"];
-
-var monthSelect = document.getElementById("month");
-
-for (var i = 0; i < monthArray.length; i++){
-    var monthTitle = monthArray[i];
-
-    var monthOption = document.createElement("option");
-    monthOption.innerHTML = monthTitle;
-    monthOption.value = monthTitle;
-
-    monthSelect.appendChild(monthOption);
-} 
-
-var print = document.getElementById("btn");
-
-function printCalendar()
