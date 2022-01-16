@@ -38,31 +38,43 @@ function convertArray(obj) {
 // empty lines, can you get the number of lines down to 8?
 
 function curveGrades() {
-    **sum = function (accumulator, currentValue) {
-        return accumulator + currentValue
-    }
+    let sum = (accumulator, currentValue) => accumulator + currentValue
 
-    **sumGrades = function(array) {
-        return array.reduce(sum)
-    }
+    const sumGrades = (array) => array.reduce(sum)
 
-    **aryGrades = convertArray(document.querySelector('#scores'))
+    let aryGrades = convertArray(document.querySelector('#scores'))
 
-    **minGrade = aryGrades.reduce(function(a, b) {
+    const minGrade = aryGrades.reduce(function(a, b) {
         return Math.min(a, b)
     })
     
-    **maxGrade = aryGrades.reduce(function(a, b) {
+    const maxGrade = aryGrades.reduce(function(a, b) {
         return Math.max(a, b)
     })
     
-    **mean = sumGrades(aryGrades) / aryGrades.length
+    var mean = sumGrades(aryGrades) / aryGrades.length
 
-    **range = maxGrade - minGrade
+    let range = maxGrade - minGrade
 
-    gradeSlice = range / 5
+    var gradeSlice = range / 5
 
     aryGrades.forEach(applyBell)
 
+    var gradeHTML = document.createElement("h4");
+    gradeHTML.setAttribute("id", "gradeHTML");
+    gradeHTML.textContent = "Test";
+    document.getElementById("grades").appendChild(gradeHTML);
+
     // write the value of aryGrades to the grades div in the HTML document
+}
+
+var submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", curveGrades);
+
+const resetButton = document.getElementById("reset");
+    resetButton.addEventListener("click", reset);
+
+function reset(){
+    let resetHTML = document.getElementById("gradeHTML");
+    resetHTML.remove();
 }
