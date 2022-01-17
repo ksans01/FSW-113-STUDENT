@@ -4,9 +4,22 @@
 // the 'queryType' and 'itemID' elements in starwars.html to the function 
 // called 'getFromSWAPI()'
 
+function fetchData(){
+    var queryType = document.getElementById("queryType").value;
+    var queryNames = ["people", "planets", "startships"];
+    var queryIndex = queryNames.indexOf(queryType) + 1;
+    console.log(queryIndex);
+
+    var itemID = document.getElementById("itemID").value;
+    console.log(itemID);
+}
+
+
+
 function getFromSWAPI() {
     // assign values to any necessary variables
     fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
+    
     .then(function (response) {
         return response.json()
     })

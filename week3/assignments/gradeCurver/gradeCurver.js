@@ -68,7 +68,7 @@ function curveGrades() {
     // write the value of aryGrades to the grades div in the HTML document
 }
 
-var submitButton = document.getElementById("submit");
+const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", curveGrades);
 
 const resetButton = document.getElementById("reset");
