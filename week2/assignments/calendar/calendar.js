@@ -6,11 +6,11 @@
 
 // modify this script to use the first day of the month the user selects in place of the const today 
 
-    function printCalendar() {
-        let monthSelect = document.getElementById("monthDrop");
-        var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let monthIndex = monthArray.indexOf(monthSelect);
-                
+var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let monthSelect = document.getElementById("monthDrop");
+// let monthIndex = monthArray.map((monthSelect, index)=> `<option value = ${index + 1}> ${monthSelect}</option>`);
+let monthIndex = document.querySelector('#monthDrop').index;
+
         for (var i = 0; i < monthArray.length; i++){
             var monthTitle = monthArray[i];
 
@@ -22,11 +22,17 @@
         }
 
 
+    function printCalendar() {
+                
 
 
-        const today = new Date(`${monthIndex}/1/2021`)  
-                 
-        const month = today.getMonth()
+        document.getElementById('calendarDays').innerHTML = ''
+
+
+        const today = new Date(`${monthIndex}/1/2022`)  
+        console.log(today, monthIndex);         
+        const month = document.querySelector('#monthDrop').value
+        console.log(month);
         let days
         switch (month) {
             case 1:
