@@ -3,6 +3,7 @@
 // create an event listener that calls the curveGrade() function when the Curve It!! button is clicked
 
 // create an event listener that resets the scores and grades to their defaults when the Reset button is clicked
+let aryGrades, range, gradeSlice, mean
 
 function applyBell(grade, index, ary) {
     switch (true) {
@@ -38,44 +39,40 @@ function convertArray(obj) {
 // empty lines, can you get the number of lines down to 8?
 
 function curveGrades() {
-    let sum = (accumulator, currentValue) => accumulator + currentValue
 
-    const sumGrades = (array) => array.reduce(sum)
+    const sumGrades = (array) => array.reduce((accumulator, currentValue) => accumulator + currentValue)
 
     let aryGrades = convertArray(document.querySelector('#scores'))
 
-    const minGrade = aryGrades.reduce(function(a, b) {
-        return Math.min(a, b)
-    })
+    const minGrade = aryGrades.reduce((a, b) => Math.min(a, b))
     
-    const maxGrade = aryGrades.reduce(function(a, b) {
-        return Math.max(a, b)
-    })
+    const maxGrade = aryGrades.reduce((a, b) => Math.max(a, b))
+
     mean = 0;
     mean = sumGrades(aryGrades) / aryGrades.length
 
-    let range = maxGrade - minGrade
-
-     gradeSlice = range / 5
+    gradeSlice = (maxGrade - minGrade) / 5
 
     aryGrades.forEach(applyBell)
 
-    var gradeHTML = document.createElement("h4");
-    gradeHTML.setAttribute("id", "gradeHTML");
-    gradeHTML.textContent = "Test";
-    document.getElementById("grades").appendChild(gradeHTML);
+    // var gradeHTML = document.createElement("h4");
+    // gradeHTML.setAttribute("id", "gradeHTML");
+    // gradeHTML.textContent = "Test";
+    document.getElementById("grades").innerText = aryGrades;
 
     // write the value of aryGrades to the grades div in the HTML document
 }
-var mean = 0;
-var gradeSlice = 0;
+mean = 0;
+gradeSlice = 0;
 const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", curveGrades);
+submitButton.addEventListener("click", function(){curveGrades()});
 
 const resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", reset);
 
 function reset(){
-    let resetHTML = document.getElementById("gradeHTML");
-    resetHTML.remove();
+    // let resetHTML = document.getElementById("gradeHTML");
+    // resetHTML.remove();
+    document.querySelector("#scores").value = "";
+    document.querySelector("#grades").innerText = "Curved Grades Show Here"
 }
