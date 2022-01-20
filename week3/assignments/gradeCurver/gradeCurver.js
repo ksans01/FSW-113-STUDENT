@@ -51,12 +51,12 @@ function curveGrades() {
     const maxGrade = aryGrades.reduce(function(a, b) {
         return Math.max(a, b)
     })
-    
-    var mean = sumGrades(aryGrades) / aryGrades.length
+    mean = 0;
+    mean = sumGrades(aryGrades) / aryGrades.length
 
     let range = maxGrade - minGrade
 
-    var gradeSlice = range / 5
+     gradeSlice = range / 5
 
     aryGrades.forEach(applyBell)
 
@@ -67,7 +67,8 @@ function curveGrades() {
 
     // write the value of aryGrades to the grades div in the HTML document
 }
-
+var mean = 0;
+var gradeSlice = 0;
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", curveGrades);
 

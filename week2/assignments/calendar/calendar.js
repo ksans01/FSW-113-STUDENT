@@ -9,7 +9,6 @@
 var monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let monthSelect = document.getElementById("monthDrop");
 // let monthIndex = monthArray.map((monthSelect, index)=> `<option value = ${index + 1}> ${monthSelect}</option>`);
-let monthIndex = document.querySelector('#monthDrop').index;
 
         for (var i = 0; i < monthArray.length; i++){
             var monthTitle = monthArray[i];
@@ -20,14 +19,15 @@ let monthIndex = document.querySelector('#monthDrop').index;
 
             monthSelect.appendChild(monthOption);
         }
+        document.querySelector('#monthDrop').selectedIndex = 0;
+        let monthIndex = document.querySelector('#monthDrop').selectedIndex + 1;
 
-
-    function printCalendar() {
+        function printCalendar() {
                 
 
 
         document.getElementById('calendarDays').innerHTML = ''
-
+        monthIndex = document.querySelector('#monthDrop').selectedIndex + 1;
 
         const today = new Date(`${monthIndex}/1/2022`)  
         console.log(today, monthIndex);         
