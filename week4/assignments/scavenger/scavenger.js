@@ -5,7 +5,16 @@
 // Sort that array and display it in the 'AllItems' element on the scavenger.html document.
 
 function combineLists() {
+    var raji = ["Coffee Cup", "Wired Mouse"];
+    var huang = ["Paper Clip", "ToDo List"];
+    var jose = ["Family Picture"];
+    var veronica = ["Clacky Keyboard"];
+
+    var allItems = [...raji, ...huang, ...jose, ...veronica];
+
+    document.querySelector('#AllItems').textContent = allItems;
 }
+document.querySelector('#submit').addEventListener('onclick', combineLists())
 
 // The following code is a bonus addition that facilitates data entry on the scavenger.html document.
 // If you first click in one of the textareas, you can then click scavenger hunt items in the unordered
