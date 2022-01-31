@@ -20,14 +20,16 @@ const lang = 'JavaScript';
 
         // use an array method to check whether the user included 'JavaScript' in their
         // list of languages
-        const languages = [document.querySelector('#lang0').value,
-        document.querySelector('#lang1').value,
-        document.querySelector('#lang2').value,
-        document.querySelector('#lang3').value,
-        document.querySelector('#lang4').value,
-        document.querySelector('#lang5').value,
-        document.querySelector('#lang6').value,
-        document.querySelector('#lang7').value]
+        const languages = [
+            document.querySelector('#lang0').value,
+            document.querySelector('#lang1').value,
+            document.querySelector('#lang2').value,
+            document.querySelector('#lang3').value,
+            document.querySelector('#lang4').value,
+            document.querySelector('#lang5').value,
+            document.querySelector('#lang6').value,
+            document.querySelector('#lang7').value
+        ]
 
         const java = languages.find(findJava);
 

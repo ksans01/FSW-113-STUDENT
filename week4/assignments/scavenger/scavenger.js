@@ -12,7 +12,7 @@ function combineLists() {
 
     var allItems = [...raji, ...huang, ...jose, ...veronica];
 
-    document.querySelector('#AllItems').textContent = allItems;
+    document.querySelector('#allItems').textContent = allItems;
 }
 document.querySelector('#submit').addEventListener('onclick', combineLists())
 
