@@ -1,6 +1,6 @@
 // Declare any necessary variables.
 
-// Add am evemt listener that responds to the click of the "print" button by calling a function to instantiate
+// Add am event listener that responds to the click of the "print" button by calling a function to instantiate
 //  a new student object, and another function to print the certificate.
 
 // Add an event listener that responds to the click of the reset button by resetting all the values
@@ -12,39 +12,50 @@
 
 // Create a function that converts the contents of a comma-separated text string to a numeric array.
 // You can use this function when instantiating the arrays in the student object.
+let student
+var studentName = document.querySelector('#studentName')
+var className = document.querySelector('#className')
+var studentScore = document.querySelector('#studentScores')
+var possible = document.querySelector('#possibleScores')
+var certStudentName = document.querySelector('#certStudentName')
+var certClassName = document.querySelector('#certClassName')
+var certGrade = document.querySelector('#certGrade')
 
-const studentName = document.querySelector('#studentName')
-const className = document.querySelector('#className')
-const studentScores = document.querySelector('#studentScores').value
-const possibleScores = document.querySelector('#possibleScores')
+var printBtn = document.querySelector('#print').addEventListener('click', function(){createStudent(),print()})
+var resetBtn = document.querySelector('#reset').addEventListener('click', reset)
+// var student = new Student()
 
-function setStudent(id) {
-    switch (id) {
-        case '1':
-          student = new objStudent(
-              'Bob',
-              'English',
-              3,
-              5,
-          ) 
-          break; 
-
-          case '2':
-          student = new objStudent(
-              'Rick',
-              'English',
-              4,
-              5,
-          ) 
-          break; 
-
-          case '3':
-          student = new objStudent(
-              'Morty',
-              'English',
-              2,
-              5,
-          ) 
-          break; 
-    }
+function createStudent(){
+    student = new Student(studentName.value, className.value, convertGrade(studentScore), convertGrade(possible))
+    console.log(student)
 }
+
+function print(){
+    console.log(studentName.value)
+
+    certStudentName.textContent = studentName.value
+    certClassName.textContent = className.value
+// calculated grades go here
+    certGrade.textContent = student.letterGrade()
+    console.log(certGrade.textContent)
+
+}
+// convert math objects into arrays
+function convertGrade(obj){
+    var ary = obj.value.split(',')
+    ary = ary.map(function (A){return parseInt(A)})
+    return ary
+}
+
+
+function reset(){
+    certStudentName.textContent = ''
+    certClassName.textContent = ''
+    certGrade.textContent = ''
+
+}
+
+
+
+
+

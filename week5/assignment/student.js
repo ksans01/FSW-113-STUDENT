@@ -4,30 +4,55 @@
 // - a method that adds up all the possible scores
 // - a method that calculates the student's letter grade (divide the student's score by the possible scores and use the resulting decimal to determine grade)
 
-class objStudent {
-    constructor (...data){
-        this.studentName = data[0],
-        this.className = data[1],
-        this.studentScores = data[2],
-        this.possibleScores = data[3]
+class Student {
+    constructor(studentName, className, studentScores, possibleScores) {
+        this.name = studentName,
+        this.class = className,
+        this.score = studentScores,
+        this.possibleScore = possibleScores
     }
 
     sumScores(){
-        let allScores = this.studentScores.reduce((currentTotal, score) => {
-            return score.value + currentTotal
-        },
-        0)
+        let allScores = this.score.reduce((currentTotal, score) => {
+            return score + currentTotal
+        }, 0)
+        console.log(allScores)
         return allScores
     }
 
     sumPossibleScores(){
-
+        let allPossible = this.possibleScore.reduce((currentTotal, possibleScore) =>{
+            return possibleScore + currentTotal
+        }, 0)
+        console.log(allPossible)
+        return allPossible
     }
 
     studentGrade(){
-
+            return (this.sumScores()/this.sumPossibleScores())        
+    }
+    
+    letterGrade(){
+        let score = this.studentGrade()
+        if(score >= .90){
+            return 'A'
+        }
+        else if(score >= .80){
+            return 'B'
+        }
+        else if(score >= .70){
+            return 'C'
+        }
+        else if(score >= .60){
+            return 'D'
+        }
+        else{
+            return 'F'
+        }
     }
 }
 
-const scores = document.querySelector('#print').addEventListener('click', setStudent)
-console.log(scores)
+
+
+// student = new Student('Rick', 'Math', 87, 100)
+// console.log(student)
