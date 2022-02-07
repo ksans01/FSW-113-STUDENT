@@ -3,7 +3,7 @@
 
 
 
-function convertTemp(a, b){
+export default function convertTemp(a, b){
     return a * b
 }
 
