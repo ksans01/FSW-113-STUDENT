@@ -2,6 +2,7 @@
 // Depending on the location of the city, the function should return degrees in either fahrenheit or centigrade.
 
 
+
 function convertTemp(a, b){
     return a * b
 }

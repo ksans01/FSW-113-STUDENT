@@ -15,8 +15,8 @@
 // hours at the specified city
 
 
-// import getDaylight from './getDaylight.js'
-// import converTemp from '/convertTemp.js'
+import getDaylight from './getDaylight.js'
+import convertTemp from './convertTemp.js'
 
 const weather = () => {
     axios.get('http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=86156c9a86ff37f9af32d6f59b53d6bb')
