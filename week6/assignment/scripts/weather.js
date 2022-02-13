@@ -16,19 +16,60 @@
 
 
 import getDaylight from './getDaylight.js'
-import convertTemp from './convertTemp.js'
+import * as convertTemp from './convertTemp.js'
 
-const weather = () => {
-    axios.get('http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=86156c9a86ff37f9af32d6f59b53d6bb')
-    .then(res => console.log(res.data.list))
-    .catch(error => console.log(error))
+
+
+// Pulls Lat Long info
+// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+
+// Gets weather info
+// api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+var geoCode, weatherData, cityName, url, lat, lon, cityTemp, humidity, conditions, sunrise, sunset, sunriseTime, sunsetTime
+var background = document.querySelector('.weatherWrapper')
+async function searchCity(){
+    cityName = document.querySelector('#city').value.toLowerCase()
+    try{
+    url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=77b7879a0d17c8e649568640e60f40ab`
+    geoCode = await apiRequest(url)
+        lat = geoCode[0].lat
+        lon = geoCode[0].lon
+    weatherData = await apiRequest(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=77b7879a0d17c8e649568640e60f40ab`)
+    console.log(weatherData)
+    // console.log(convertTemp(weatherData.main.temp))
+    cityTemp = document.querySelector('#tempData')
+    cityTemp.textContent = `${convertTemp.convertTemp(weatherData.main.temp)} F`
+    humidity = document.querySelector('#humidData')
+    humidity.textContent = `${weatherData.main.humidity}%`
+    conditions = document.querySelector('#conditionsData')
+    conditions.textContent = `Gusts up to: ${weatherData.wind.gust} knots`
+    sunrise = weatherData.sys.sunrise
+    sunset = weatherData.sys.sunset
+        console.log(sunrise)
+        console.log(sunset)
+        sunriseTime = new Date(sunrise*1000).toLocaleString();
+        sunsetTime = new Date(sunset*1000).toLocaleString();
+        console.log(sunriseTime)
+        console.log(sunsetTime)
+        
+        getDaylight(background)
+
+    }
+    catch(error){
+        console.log(error)
+    }
 }
 
-weather()
-// const cors = require('cors');
-// const express = require('express');
-// const app = express();
-// app.use(cors());
-// app.options('*', cors());
+//Axios Request
+async function apiRequest(url) {
+    return new Promise( (resolve, reject) => {
+        axios.get(url)
+        .then(res => resolve(res.data))
+        .catch(err => reject(err))
+    })
+}
 
-console.log("Hello Universe")
+
+let goBtn = document.getElementById('goBttn')
+goBtn.addEventListener('click', searchCity)
+

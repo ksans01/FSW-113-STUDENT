@@ -3,8 +3,8 @@
 
 
 
-export default function convertTemp(a, b){
-    return a * b
+export function convertTemp(k){
+    return (k - 273.15)*1.8 + 32;    
 }
 
-console.log(convertTemp(2,3))
+convertTemp()
