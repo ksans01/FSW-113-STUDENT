@@ -19,6 +19,10 @@ import getDaylight from './getDaylight.js'
 import * as convertTemp from './convertTemp.js'
 import cTimeAmPm from './getDaylight.js'
 
+
+// Pulls Lat Long info
+// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+
 var geoCode, weatherData, cityName, url, lat, lon, cityTemp, humidity, conditions, sunrise, sunset, sunriseTime, sunsetTime
 var background = document.querySelector('.weatherWrapper')
 let cDate = new Date();
@@ -40,12 +44,13 @@ async function searchCity(){
         lat = geoCode[0].lat
         lon = geoCode[0].lon
     weatherData = await apiRequest(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=77b7879a0d17c8e649568640e60f40ab`)
+
     cityTemp = document.querySelector('#tempData')
     cityTemp.textContent = `${convertTemp.convertTemp(weatherData.main.temp)} F`
     humidity = document.querySelector('#humidData')
     humidity.textContent = `${weatherData.main.humidity}%`
     conditions = document.querySelector('#conditionsData')
-    conditions.textContent = `Gusts up to: ${weatherData.wind.gust} knots`
+    conditions.textContent = `Gusts up to: ${weatherData.wind.speed} knots`
     sunrise = weatherData.sys.sunrise
     sunset = weatherData.sys.sunset
         sunriseTime = new Date(sunrise*1000).toLocaleString();
