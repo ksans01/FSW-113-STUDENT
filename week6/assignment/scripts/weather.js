@@ -17,16 +17,21 @@
 
 import getDaylight from './getDaylight.js'
 import * as convertTemp from './convertTemp.js'
+import cTimeAmPm from './getDaylight.js'
 
-
-
-// Pulls Lat Long info
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
-
-// Gets weather info
-// api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 var geoCode, weatherData, cityName, url, lat, lon, cityTemp, humidity, conditions, sunrise, sunset, sunriseTime, sunsetTime
 var background = document.querySelector('.weatherWrapper')
+let cDate = new Date();
+let cDay = cDate.getDate();
+let cMonth = cDate.getMonth()+1;
+let cYear = cDate.getFullYear();
+let cHours = cDate.getHours();
+let cHoursStandard = ((cHours+11) % 12 + 1)
+let cMin = cDate.getMinutes();
+let cTime = `${cHoursStandard}:${cMin}`;
+let currentDate = `${cMonth}/${cDay}/${cYear}`
+let currentDateTime = `${currentDate}, ${cTime}` + ' ' + cTimeAmPm()
+
 async function searchCity(){
     cityName = document.querySelector('#city').value.toLowerCase()
     try{
@@ -35,8 +40,6 @@ async function searchCity(){
         lat = geoCode[0].lat
         lon = geoCode[0].lon
     weatherData = await apiRequest(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=77b7879a0d17c8e649568640e60f40ab`)
-    console.log(weatherData)
-    // console.log(convertTemp(weatherData.main.temp))
     cityTemp = document.querySelector('#tempData')
     cityTemp.textContent = `${convertTemp.convertTemp(weatherData.main.temp)} F`
     humidity = document.querySelector('#humidData')
@@ -45,14 +48,10 @@ async function searchCity(){
     conditions.textContent = `Gusts up to: ${weatherData.wind.gust} knots`
     sunrise = weatherData.sys.sunrise
     sunset = weatherData.sys.sunset
-        console.log(sunrise)
-        console.log(sunset)
         sunriseTime = new Date(sunrise*1000).toLocaleString();
         sunsetTime = new Date(sunset*1000).toLocaleString();
-        console.log(sunriseTime)
-        console.log(sunsetTime)
         
-        getDaylight(background)
+        getDaylight(sunriseTime, currentDateTime)
 
     }
     catch(error){

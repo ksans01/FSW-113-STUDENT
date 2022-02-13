@@ -20,8 +20,8 @@ function cTimeAmPm(){
     }
 }
 
-export default function getDaylight(a){
-        if(currentDateTime == 'AM'){
+export default function getDaylight(a, b){
+        if(a >= b){
             return background.style.backgroundColor = "blue"
         } else{
             return background.style.backgroundColor = "black"
@@ -29,6 +29,4 @@ export default function getDaylight(a){
         return currentDateTime
     }    
 
-// getDaylight(background)
-console.log(getDaylight(currentDateTime))
 
